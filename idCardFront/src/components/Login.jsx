@@ -97,7 +97,7 @@ function Login(props) {
     <> {!data ? <div className={signInStyle.loadingD}><img src="./loading.svg" alt="Loading..." /></div> :
       data.isLoggedIn === true ? redirectToHome() :
         <>
-          <ErrorPops triggerError={errorMessage} setClose={setErrorMessage} />
+          <ErrorPops triggerError={errorMessage} setClosed={setErrorMessage} />
           <SignUpPopUp trigger={triggering} setCloseSignUp={setTriggering} />
           <div className={signInStyle.bodySign}>
             <div className={signInStyle.header}>
