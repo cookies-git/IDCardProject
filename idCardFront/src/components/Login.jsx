@@ -1,16 +1,15 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import signInStyle from "../styles/signInStyle.module.css";
 import { useNavigate } from "react-router-dom";
 import ErrorPops from "./subcomponents/ErrorPops";
 import SignUpPopUp from "./subcomponents/SignUpPopUp.jsx";
 
-function Login(props) {
+function Login() {
   const [data, setData] = useState();
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [errorMessage, setErrorMessage] = useState("");
   const [triggering, setTriggering] = useState(false);
-
-
+  const [showSignUpModal, setShowSignUpModal] = useState(false);
 
   const navigate = useNavigate();
 
@@ -38,6 +37,11 @@ function Login(props) {
 
   //formStylesends
 
+   // Function to handle sign-up button click
+   const handleSignUpClick = () => {
+    setShowSignUpModal(true);
+  };
+
 
   //Checking user is loggedIn or Not
 
@@ -54,7 +58,7 @@ function Login(props) {
 
   useEffect(() => {
     fetchData();
-  });
+  },[]);
 
   //data collecting from form
   const handleChange = (event) => {
@@ -92,6 +96,7 @@ function Login(props) {
       setErrorMessage(err)
     }
   };
+
 
   return (
     <> {!data ? <div className={signInStyle.loadingD}><img src="./loading.svg" alt="Loading..." /></div> :
@@ -141,10 +146,11 @@ function Login(props) {
               <div className={signInStyle.line}></div>
             </div>
             <div>
-              <h5 className={signInStyle.littleHead}>Don't have an account?
-                <span className={signInStyle.linkClass} onClick={() => {
+              <h5 className={signInStyle.littleHead}>Do not have an account?
+            <span className={signInStyle.linkClass} onClick={handleSignUpClick}>Sign up</span>
+            {showSignUpModal && <SignUpPopUp trigger={showSignUpModal} setCloseSignUp={setShowSignUpModal} />}
 
-                }}>Sign up</span></h5>
+                </h5>
             </div>
           </div>
         </>

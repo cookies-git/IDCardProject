@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import chome from '../styles/chome.module.css';
 import SignInPopUp from "./subcomponents/SignInPopUp.jsx";
 import SignUpPopUp from "./subcomponents/SignUpPopUp.jsx";

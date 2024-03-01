@@ -1,13 +1,17 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SignUpstyles from "../styles/signup2.module.css";
 import ErrorPops from "./subcomponents/ErrorPops";
+import SignInPopUp from "./subcomponents/SignInPopUp";
+
 
 
 function Signup(props) {
   const [formData, setFormData] = useState({ fname: "", sname: "", dob: "", email: "", phone: "", password: "" });
   const [errorMessage, setErrorMessage] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [showSignInModal, setShowSignInModal] = useState(false);
+
   const navigate = useNavigate();
 
 
@@ -69,6 +73,11 @@ function Signup(props) {
         setErrorMessage(err)
       }
     }
+  };
+
+  // Function to handle sign-in button click
+  const handleSignInClick = () => {
+    setShowSignInModal(true);
   };
 
 
@@ -213,14 +222,11 @@ function Signup(props) {
           <div className={SignUpstyles.line}></div>
         </div>
         <div>
-          <h5 className={SignUpstyles.littleHead}>Already have an account? <span className={SignUpstyles.linkClass}>Sign in</span></h5>
+          <h5 className={SignUpstyles.littleHead}>Already have an account? <span className={SignUpstyles.linkClass} onClick={handleSignInClick}>Sign in</span></h5>
         </div>
         <div>
-          {/* <div>
-            {errorMessage === "Mail address has already been taken" && (
-              <button className={SignUpstyles.loginButton} onClick={() => navigate("/")}>Login</button>
-            )}
-          </div> */}
+      {showSignInModal && <SignInPopUp triggerin={showSignInModal} setClose={setShowSignInModal} />}
+   
 
         </div>
       </form>
