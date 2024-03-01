@@ -10,7 +10,7 @@ const resetPassword = require('./routes/reset-password');
 
 
 
-//corsf
+//corsfile
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
